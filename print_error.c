@@ -12,19 +12,19 @@
 
 #include "philo.h"
 
-int     ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    while (s[len])
-        len++;
-    return len;
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
-void    print_error(int fd, char *str)
+void	print_error(int fd, char *str)
 {
-    if(!str)
-        return;
-    write(fd, str, ft_strlen(str));
+	if (!str)
+		return ;
+	write(fd, str, ft_strlen(str));
 }
