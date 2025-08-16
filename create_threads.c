@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_threads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisrine <nisrine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nikhtib <nikhtib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:26:34 by nisrine           #+#    #+#             */
-/*   Updated: 2025/08/15 16:16:17 by nisrine          ###   ########.fr       */
+/*   Updated: 2025/08/16 00:39:55 by nikhtib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	*philo_rotine(void *arg)
 			// write_status(philo, "is dead !");
 			break;
 		}
-		// check if one of the philos died
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
@@ -55,10 +54,6 @@ int    create_threads(t_data *data, t_philo *philo)
 			return(print_error(2,"fail to create thread\n"), 1);
 		i++;
 	}
-	// (void) philo;
-	printf("nb ---> %d\n", data->nb_philos);
-	printf("nb 2 ---> %d\n", philo->data->t_eat);
-	// exit(0);
 	while (!data->dead_flag)
 		check_dead(philo);
 	return (0);

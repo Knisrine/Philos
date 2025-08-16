@@ -6,7 +6,7 @@
 /*   By: nikhtib <nikhtib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:43:12 by nisrine           #+#    #+#             */
-/*   Updated: 2025/08/15 17:55:09 by nikhtib          ###   ########.fr       */
+/*   Updated: 2025/08/16 01:52:02 by nikhtib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,25 @@ void     check_dead(t_philo *philo)
             philo->data->dead_flag = 1;
             pthread_mutex_unlock(&philo->data->death_mutex);
             printf("philo is dead\n");
-        }   
-            // return;
+        }
         i++;
     }
+}
+
+int     check_nb_meals(t_philo *philo)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (i < philo->data->nb_philos)
+    {   
+        if(philo->data->philos[i].count_meals == philo->data->nb_must_eat)
+            count++;
+        i++;
+    }
+    if(count == philo->data->nb_must_eat)
+        return (1);
+    return (0);
 }

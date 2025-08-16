@@ -54,4 +54,5 @@ void     check_dead(t_philo *philo);
 void    write_status(t_philo *philo, char *action);
 int     get_dead_flag(t_philo *philo);
 int     small_atoi(char *s);
+int     check_nb_meals(t_philo *philo);
 #endif
