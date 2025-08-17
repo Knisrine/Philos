@@ -6,7 +6,7 @@
 /*   By: nikhtib <nikhtib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 19:08:51 by nikhtib           #+#    #+#             */
-/*   Updated: 2025/08/17 15:46:25 by nikhtib          ###   ########.fr       */
+/*   Updated: 2025/08/17 22:25:50 by nikhtib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ typedef struct s_data
 	int					dead_flag;
 	int					philos_ate;
 	pthread_mutex_t		*forks;
-	pthread_mutex_t		max_meal;
-	pthread_mutex_t		count_mutex;
-	pthread_mutex_t		philos_ate_mutex;
-	pthread_mutex_t		write_mutex;
-	pthread_mutex_t		death_mutex;
+	pthread_mutex_t		max_meal;//
+	pthread_mutex_t		count_mutex;//
+	pthread_mutex_t		philos_ate_mutex;//
+	pthread_mutex_t		write_mutex;////
+	pthread_mutex_t		death_mutex;////
+	pthread_mutex_t		philos_mutex;////
 	t_philo				*philos;
 }						t_data;
 

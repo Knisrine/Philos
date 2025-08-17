@@ -6,7 +6,7 @@
 /*   By: nikhtib <nikhtib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 01:36:11 by nisrine           #+#    #+#             */
-/*   Updated: 2025/08/17 13:38:53 by nikhtib          ###   ########.fr       */
+/*   Updated: 2025/08/17 22:42:24 by nikhtib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	init_data(t_data *data, char **av)
 	data->start_time = get_current_time();
 	data->nb_must_eat = -1;
 	pthread_mutex_init(&data->death_mutex, NULL);
+	pthread_mutex_init(&data->count_mutex, NULL);
 	if (av[5])
 		data->nb_must_eat = small_atoi(av[5]);
 	if (create_philos(data))
