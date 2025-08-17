@@ -6,7 +6,7 @@
 /*   By: nikhtib <nikhtib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:43:12 by nisrine           #+#    #+#             */
-/*   Updated: 2025/08/16 22:42:27 by nikhtib          ###   ########.fr       */
+/*   Updated: 2025/08/17 15:36:11 by nikhtib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	check_dead(t_philo *philo)
 		pthread_mutex_lock(&philo->meal_mutex);
 		time = get_current_time() - philo->t_last_meal;
 		pthread_mutex_unlock(&philo->meal_mutex);
-		if (time >= philo->data->t_die)
+		if (time > philo->data->t_die)
 		{
 			pthread_mutex_lock(&philo->data->death_mutex);
 			philo->data->dead_flag = 1;
 			pthread_mutex_unlock(&philo->data->death_mutex);
-			status(philo, "died");
+			status(philo, RED, "died");
 			break ;
 		}
 		i++;
@@ -49,24 +49,29 @@ void	check_dead(t_philo *philo)
 
 int	check_nb_meals(t_philo *philo)
 {
-	int i;
-	int count;
+	int		i;
+	int		count;
+	t_data	*data;
+	t_philo	*philos;
 
+	data = philo->data;
+	philos = data->philos;
 	i = 0;
 	count = 0;
-	while (i < philo->data->nb_philos)
+	while (i < data->nb_philos)
 	{
-		pthread_mutex_lock(&philo->data->count_mutex);
-		if (philo->data->philos[i].count_meals == philo->data->nb_must_eat)
+		pthread_mutex_lock(&data->count_mutex);
+		if (data->philos[i].count_meals >= data->nb_must_eat)
 			count++;
-		pthread_mutex_unlock(&philo->data->count_mutex);
-		if (count == philo->data->nb_philos)
+		pthread_mutex_unlock(&data->count_mutex);
+		if (count == data->nb_philos)
 		{
-			pthread_mutex_lock(&philo->data->philos_ate_mutex);
-			philo->data->philos_ate = 1;
-			pthread_mutex_unlock(&philo->data->philos_ate_mutex);
+			pthread_mutex_lock(&data->philos_ate_mutex);
+			data->philos_ate = 1;
+			pthread_mutex_unlock(&data->philos_ate_mutex);
+			return (1);
 		}
 		i++;
 	}
-	return (philo->data->philos_ate);
+	return (0);
 }

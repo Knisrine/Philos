@@ -6,7 +6,7 @@
 /*   By: nikhtib <nikhtib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 19:08:51 by nikhtib           #+#    #+#             */
-/*   Updated: 2025/08/16 22:08:11 by nikhtib          ###   ########.fr       */
+/*   Updated: 2025/08/17 15:46:25 by nikhtib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+
+# define VIOLET	"\033[38;2;128;0;255m"
+# define GREEN "\033[0;92m"
+# define BLUE "\x1b[34m"
+# define WHITE "\x1b[37m"
+# define RED "\x1b[31m"
 
 typedef struct s_data	t_data;
 
@@ -51,7 +57,7 @@ typedef struct s_data
 	t_philo				*philos;
 }						t_data;
 
-pthread_mutex_t			*init_forks(int c);
+pthread_mutex_t			*init_forks(int n);
 int						is_number(char c);
 int						valid_argument(char **arg);
 int						init_data(t_data *data, char **av);
@@ -65,11 +71,11 @@ void					sleeping(t_philo *philo);
 void					eating(t_philo *philo);
 void					ft_wait(int ms);
 void					check_dead(t_philo *philo);
-void					write_status(t_philo *philo, char *action);
+void					write_status(t_philo *philo, char *color, char *action);
 int						get_dead_flag(t_philo *philo);
 int						small_atoi(char *s);
 int						check_nb_meals(t_philo *philo);
-void					status(t_philo *philo, char *action);
+void					status(t_philo *philo, char *color, char *action);
 void					assign_forks(t_data *data);
 void					wait_treads(t_data *data);
 void					destroy_mutex(t_data *data);

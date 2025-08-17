@@ -1,16 +1,19 @@
 CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread -g
+CFLAGS  = -Wall -Wextra -Werror #-fsanitize=thread -g
 NAME    = philo
 
 SRC     = main.c valid_argument.c init_data.c utils.c create_threads.c get_time_ms.c print_error.c action.c check_dead.c small_atoi.c
 OBJ     = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(OBJSFOLDER) $(NAME)
+
+$(OBJSFOLDER):
+	@mkdir -p objs
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o: %.c philo.h
+$(OBJSFOLDER)%.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
